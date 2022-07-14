@@ -1,0 +1,79 @@
+<div class="container">
+  <form #inputForm (ngSubmit)="submitWord(inputWord.value); inputForm.reset();">
+    <div class="center-align">
+      <div style="width: 240px">
+        <span style="font: bold 14px Verdana, sans-serif">{{gameService.getLevelName()}}</span>
+        <div style="display: inline">
+          <div class="progress" >
+            <div #progressBar class="progress-bar progress-bar-striped bg-warning" role="progressbar" [style.width]="gameService.getProgress() | percent"
+                 [attr.aria-valuenow]="gameService.points" aria-valuemin="0" [attr.aria-valuemax]="gameService.model.maxPoints"><strong>{{gameService.points}}</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-align">
+      <div class="btn-group" style="width: 240px">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+          [disabled]="gameService.inputWords.length===0">
+          {{gameService.inputWords.length===0 ? 'No words yet...' : gameService.inputWords.join(' ')}}
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let word of gameService.inputWords" class="dropdown-item-text">{{word}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="center-align">
+      <input #inputWord type="text" class="input-word" id="inputWord" name="inputWord">
+    </div>
+    <div class="center-align">
+      <svg width="257px" xmlns:xlink="http://www.w3.org/1999/xlink"
+           height="290px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.centerChar)" class="letter-button">
+          <polygon fill="#f7e561" points="78,142.46793 103,99.166664 153,99.166664 178,142.46793
+              153,185.7692 103,185.7692" stroke="none"/>
+          <text x="128" y="155" class="game-letter" text-anchor="middle">{{gameService.model.centerChar | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[0]);" class="letter-button">
+          <polygon fill="#ededed" points="0,97.46794 25,54.166668 75,54.166668 100,97.46794
+              75,140.76921 25,140.76921" stroke="none"/>
+          <text x="50" y="110" class="game-letter" text-anchor="middle">{{gameService.model.chars[0] | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[1])" class="letter-button">
+          <polygon fill="#ededed" points="78,53.1346 103,9.833333 153,9.833333 178,53.1346 153,96.435875
+              103,96.435875" stroke="none"/>
+          <text x="128" y="66" class="game-letter" text-anchor="middle">{{gameService.model.chars[1] | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[2])" class="letter-button">
+          <polygon fill="#ededed" points="155.5,97.1346 180.5,53.833332 230.5,53.833332 255.5,97.1346 230.5,140.43587
+              180.5,140.43587" stroke="none"/>
+          <text x="206" y="110" class="game-letter" text-anchor="middle">{{gameService.model.chars[2] | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[3])" class="letter-button">
+          <polygon fill="#ededed" points="156.5,186.80127 181.5,143.5 231.5,143.5 256.50003,186.80127 231.5,230.10254
+              181.5,230.10254" stroke="none"/>
+          <text x="206" y="199" class="game-letter" text-anchor="middle">{{gameService.model.chars[3] | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[4])" class="letter-button">
+          <polygon fill="#ededed" points="78,231.80127 103,188.5 153,188.5 178,231.80127
+              153,275.1025 103,275.1025" stroke="none"/>
+          <text x="128" y="244" class="game-letter" text-anchor="middle">{{gameService.model.chars[4] | uppercase}}</text>
+        </a>
+        <a routerLink="" (click)="addLetter(inputWord, gameService.model.chars[5])" class="letter-button">
+          <polygon fill="#ededed" points="0.0,186.80127 25.0,143.5 75.0,143.5 100.0,186.80127 75.0,230.10254 25.0,230.10254"
+                   stroke="none"/>
+          <text x="50" y="199" class="game-letter" text-anchor="middle">{{gameService.model.chars[5] | uppercase}}</text>
+        </a>
+      </svg>
+    </div>
+    <div class="center-align">
+      <button type="button" class="btn btn-outline-secondary" (click)="inputWord.value = inputWord.value.slice(0, -1)">Delete</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="shuffle()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+          <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+          <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+        </svg>
+      </button>
+      <button type="submit" class="btn btn-outline-secondary">Enter</button>
+    </div>
+  </form>
+</div>

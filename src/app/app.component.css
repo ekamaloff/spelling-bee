@@ -1,0 +1,51 @@
+input.input-word {
+  font: bold 30px Verdana, Helvetica, Arial, sans-serif;
+  border: none;
+  outline: none;
+  caret-color: darkgoldenrod;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+input.input-word::-webkit-input-placeholder {
+  font: normal 30px Verdana, Helvetica, Arial, sans-serif;
+  text-transform: none;
+}
+
+input.input-word::-moz-placeholder {
+  font: normal 30px Verdana, Helvetica, Arial, sans-serif;
+  text-transform: none;
+}
+
+input.input-word:-ms-input-placeholder {
+  font: normal 30px Verdana, Helvetica, Arial, sans-serif;
+  text-transform: none;
+}
+
+input.input-word:-moz-placeholder {
+  font: normal 30px Verdana, Helvetica, Arial, sans-serif;
+  text-transform: none;
+}
+
+a.letter-button {
+  text-decoration: none;
+}
+.game-letter {
+  font: bold 28px Verdana, Helvetica, Arial, sans-serif ;
+  fill: #444444;
+}
+
+.button-container {
+  display: block;
+  justify-content: center;
+}
+
+.center-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  border-radius: 0.75rem;
+}
